@@ -4,6 +4,11 @@ FROM rhel6.6:latest
 MAINTAINER Justin Grant <jlgrock@gmail.com>
 
 # ##################
+# Register with Red Hat - note, you need to replace the username/password.
+# ##################
+RUN subscription-manager register --username username --password password --auto-attach
+
+# ##################
 # Update distro
 # ##################
 RUN yum update -y \
