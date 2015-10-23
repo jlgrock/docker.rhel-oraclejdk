@@ -1,14 +1,8 @@
 #!/bin/sh
 
-# Load the version from the VERSION file
-for line in $(< VERSION)
-do
-  case $line in
-    RHEL=*)  eval $line ;; # beware! eval!
-	JDK=*)  eval $line ;; # beware! eval!
-    *) ;;
-   esac
-done
+# load the versions
+/bin/sh ./loadenv.sh
+
 echo "Processing for Red Hat Enterprise Linux + JDK - Version $RHEL-$JDK"
 
 # Build the image

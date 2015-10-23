@@ -1,18 +1,12 @@
 #!/bin/sh
 
-# Load the version from the VERSION file
-for line in $(< VERSION)
-do
-  case $line in
-    RHEL=*)  eval $line ;; # beware! eval!
-	JDK=*)  eval $line ;; # beware! eval!
-    *) ;;
-   esac
-done
-
-/bin/sh ./build.sh
+# load the versions
+/bin/sh ./loadenv.sh
 
 # Build the image
+/bin/sh ./build.sh
+
+# Publish the image
 docker push jlgrock/rhel-oraclejdk:$RHEL-$JDK
 
 if [ $? -eq 0 ]; then
